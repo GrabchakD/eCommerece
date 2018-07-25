@@ -10,6 +10,7 @@
 
 <c:forEach var="p" items="${category.productList}">
     <h4><a href="<c:url value="/product?p_id=${p.id}"/>"><c:out value="${p.name}"/></a></h4>
+    <button type="button" class="btn btn-dark">Add to Cart</button>
 </c:forEach>
 
 <%@include file="footer.jsp"%>

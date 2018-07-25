@@ -1,6 +1,8 @@
 package com.dgrabchak.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -16,6 +18,8 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CATEGORY_ID")
     private Category category;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "productList")
+    private List<Cart> cart = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -47,5 +51,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Cart> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
     }
 }

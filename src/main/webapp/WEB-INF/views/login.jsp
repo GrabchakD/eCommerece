@@ -15,7 +15,7 @@
 
 <div class="container">
 
-    <spring:form class="form-signin" modelAttribute="user">
+    <spring:form class="form-signin" action="/login" modelAttribute="user">
         <h2 class="form-signin-heading">Please sign in</h2>
 
         <spring:input path="email" type="text" class="form-control" placeholder="Email address"/>

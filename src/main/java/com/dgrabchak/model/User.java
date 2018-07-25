@@ -23,18 +23,8 @@ public class User {
     private String token;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private List<Role> roles = new ArrayList<>();
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email, String password, String token, List<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.token = token;
-        this.roles = roles;
-    }
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Cart cart;
 
     public Long getId() {
         return id;
@@ -90,5 +80,13 @@ public class User {
 
     public void setRoles(List<Role> role) {
         this.roles = role;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
