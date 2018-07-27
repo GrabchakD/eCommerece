@@ -1,5 +1,7 @@
 package com.dgrabchak.controller;
 
+import com.dgrabchak.controller.ajax.AjaxResponseBody;
+import com.dgrabchak.controller.ajax.EmailPayLoad;
 import com.dgrabchak.model.User;
 import com.dgrabchak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,23 @@ public class UserController {
         ModelAndView vm = new ModelAndView();
 
         return vm;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/email", method = RequestMethod.POST)
+    public AjaxResponseBody emailCheck(@RequestBody EmailPayLoad email) {
+        AjaxResponseBody resp = new AjaxResponseBody();
+        User user = new User();
+        user.setEmail(email.getEmail());
+
+        if(userService.getByEmail(user) != null) {
+            resp.setMsg("NOK");
+            resp.setResult("false");
+        } else {
+            resp.setMsg("OK");
+            resp.setResult("true");
+        }
+
+        return resp;
     }
 }
